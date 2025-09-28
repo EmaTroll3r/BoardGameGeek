@@ -593,9 +593,9 @@ function buildPage(data) {
 
 
     // fetch(BASE_URL + 'getEbayItem/' + data.name + '/5')
-    // fetch(BASE_URL + 'getEbayItem/samsung/5')
-    // .then(onResponseReturnJson)
-    // .then(ebayPricing);
+    fetch(BASE_URL + 'getEbayItem/s/5')
+    .then(onResponseReturnJson)
+    .then(ebayPricing);
 
     for(let i=0; i<videos.length; i++){
         addVideoItem(data.hot_videos[i], videos[i]);
@@ -664,7 +664,7 @@ function buildPage(data) {
                 ratingStars[i].classList.add('game-infoPanel-rating-star-active')
             }
         }
-        console.log(data.interaction.liked)
+        // console.log(data.interaction.liked)
         if(data.interaction.liked == 1){
             likeImg.classList.add('game-infoPanel-button-likes-img-active')
             console.log('added')
@@ -710,49 +710,70 @@ function addGameBuyItem(itemData, container, addSeparator) {
 
 function ebayPricing(items){
 
-    
-    for (let i = 0; i < items.itemSummaries.length; i++) {
-        
-        const itemData = {
-            url: items.itemSummaries[i].image.imageUrl,
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/4/48/EBay_logo.png',
-            storeName: 'eBay',
-            price: items.itemSummaries[i].price.value + ' ' + items.itemSummaries[i].price.currency
-        };
+    if(items.itemSummaries){
+        for (let i = 0; i < items.itemSummaries.length; i++) {
+            
+            // console.log(items.itemSummaries[i])
+            const itemData = {
+                url: items.itemSummaries[i].itemWebUrl,
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/4/48/EBay_logo.png',
+                storeName: 'eBay',
+                price: items.itemSummaries[i].price.value + ' ' + items.itemSummaries[i].price.currency
+            };
 
-        addGameBuyItem(itemData, gameBuyContainer, i < items.itemSummaries.length - 1);
-        console.log('added')
+            addGameBuyItem(itemData, gameBuyContainer, i < items.itemSummaries.length - 1);
+            // console.log('added')
+        }
     }
 }
 
 
-function rateBoardgame(event){
+function rateBoardgame(data){
     
-    const target = event.currentTarget
-    rateValue = target.dataset.gameInfopanelRatingStar
-    for(let i=0; i<rateValue;i++){
-        ratingStars[i].classList.add('game-infoPanel-rating-star-active')
+    if(data.status == "OK"){
+        const rateValue = data.rateValue;
+        for(let i=0; i<rateValue;i++){
+            ratingStars[i].classList.add('game-infoPanel-rating-star-active')
+        }
+        for(let i=ratingStars.length - 1; i>=rateValue;i--){
+            ratingStars[i].classList.remove('game-infoPanel-rating-star-active')
+        }
     }
-    for(let i=ratingStars.length - 1; i>=rateValue;i--){
-        ratingStars[i].classList.remove('game-infoPanel-rating-star-active')
-    }
+    
+}
+
+
+function onRatingStarsClick(event){
+    const target = event.currentTarget;
+    const rateValue = target.dataset.gameInfopanelRatingStar;
+
     fetch(BASE_URL + 'rateBoardgame/' + gameId + '/' + rateValue)
+    .then(onResponseReturnJson)
+    .then(rateBoardgame);
 }
 
-function toggleLikeBoardgame(event){
+function toggleLikeBoardgame(data){
     
-    likeImg.classList.toggle('game-infoPanel-button-likes-img-active');
+    if(data.status == "OK"){
+        likeImg.classList.toggle('game-infoPanel-button-likes-img-active');
 
-    if(likeImg.classList.contains('game-infoPanel-button-likes-img-active'))
-        likesButton.dataset.value = parseInt(likesButton.dataset.value) + 1;
-    else        
-        likesButton.dataset.value = parseInt(likesButton.dataset.value) - 1;
+        if(likeImg.classList.contains('game-infoPanel-button-likes-img-active'))
+            likesButton.dataset.value = parseInt(likesButton.dataset.value) + 1;
+        else        
+            likesButton.dataset.value = parseInt(likesButton.dataset.value) - 1;
+    }
 
-    fetch(BASE_URL + 'toggleLikeBoardgame/' + gameId);
+}
+
+function onLikeButtonClick(event){
+    
+    fetch(BASE_URL + 'toggleLikeBoardgame/' + gameId)
+    .then(onResponseReturnJson)
+    .then(toggleLikeBoardgame);
 }
 
 for(let i=0;i<ratingStars.length;i++){
-    ratingStars[i].addEventListener('click', rateBoardgame);
+    ratingStars[i].addEventListener('click', onRatingStarsClick);
 }
 
-likeImg.addEventListener('click', toggleLikeBoardgame);
+likeImg.addEventListener('click', onLikeButtonClick);

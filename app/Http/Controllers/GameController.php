@@ -110,12 +110,14 @@ class GameController extends BaseController
 
         $rateValue = intval($rateValue);
         if($rateValue < 1 || $rateValue > 10){
-            return "Error: rate value must be between 1 and 10";
+            $data['status'] = "Error: rate value must be between 1 and 10";
+            return $data;
         }
 
         $user_id = Session::get('user_id');
         if(!$user_id){
-            return "Error: user not logged in";
+            $data['status'] = "Error: user not logged in";
+            return $data;
         }
 
         $interaction = Interaction::where('user_id',$user_id)->where('boardgame_id',$gameId)->first();
@@ -127,21 +129,29 @@ class GameController extends BaseController
             $interaction->rating = $rateValue;
             $interaction->save();
 
-            return "OK";
+            $data['status'] = "OK";
+            $data['rateValue'] = $rateValue;
+            return $data;
         }else{
             $interaction->rating = $rateValue;
             $interaction->save();
-            return "OK";
+
+            $data['status'] = "OK";
+            $data['rateValue'] = $rateValue;
+            return $data;
         }
 
-        return "Error: generic error";
+        $data['status'] = "Error: generic error";
+        return $data;
     }
 
     public function toggle_like_boardgame($gameId){
 
         $user_id = Session::get('user_id');
-        if(!$user_id)
-            return "Error: user not logged in";
+        if(!$user_id){
+            $data['status'] = "Error: user not logged in";
+            return $data;
+        }
 
         $interaction = Interaction::where('boardgame_id',$gameId)->where('user_id',$user_id)->first();
 
@@ -151,23 +161,27 @@ class GameController extends BaseController
             $interaction->boardgame_id = $gameId;
             $interaction->liked = true;
             $interaction->save();
-
-            return "OK";
+            
+            $data['status'] = "OK";
+            return $data;
         }else{
             if($interaction->liked == true){
                 $interaction->liked = false;
                 $interaction->save();
 
-                return "OK";
+                $data['status'] = "OK";
+                return $data;
             }else{
                 $interaction->liked = true;
                 $interaction->save();
 
-                return "OK";
+                $data['status'] = "OK";
+                return $data;
             }
         }
 
-        return "Error: generic error";
+        $data['status'] = "Error: generic error";
+        return $data;
     }
 
     public function test($id){
