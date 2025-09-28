@@ -85,6 +85,10 @@ article{
     color: var(--blue-link);
 }
 
+.search-oder-button:hover{
+    cursor: pointer;
+}
+
 .search-oder-button[data-order-dir = "asc"]::after{
     content: " ▲"
     /* " ‸↑↓▲▼" */
