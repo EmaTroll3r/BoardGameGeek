@@ -254,8 +254,9 @@ function addForumItem(reviewData, container, addFinalSeparator) {
     iconsContainer.appendChild(commentIcon);
     iconsContainer.appendChild(commentNumber);
     
+    let authorImg;
     if (reviewData.uploader.avatar_url) {
-        var authorImg = document.createElement('a');
+        authorImg = document.createElement('a');
         authorImg.className = 'game-list-section-item-authorImg';
         authorImg.href = BASE_URL + "user/" + reviewData.uploader.id;
         const img = document.createElement('img');
@@ -275,8 +276,9 @@ function addForumItem(reviewData, container, addFinalSeparator) {
     const authorWrapper = document.createElement('div');
     authorWrapper.className = 'game-list-section-item-wrapper';
     
+    let tag;
     if (reviewData.tag) {
-        var tag = document.createElement('a');
+        tag = document.createElement('a');
         tag.className = 'game-tag';
         tag.href = BASE_URL + "forums/" + gameId + "/" + reviewData.tag;
         tag.textContent = reviewData.tag;
@@ -290,8 +292,9 @@ function addForumItem(reviewData, container, addFinalSeparator) {
     const space = document.createElement('span');
     space.innerHTML = '&nbsp;';
     
+    let publishedMedia;
     if (reviewData.uploader.n_published_media){
-        var publishedMedia = document.createElement('div');
+        publishedMedia = document.createElement('div');
         publishedMedia.className = 'game-list-section-item-NpublishedMedia game-videos-description-text';
         publishedMedia.dataset.nPublishedMedia =  reviewData.uploader.n_published_media;
     }   

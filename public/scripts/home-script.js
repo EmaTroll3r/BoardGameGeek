@@ -119,35 +119,39 @@ function createHomeSectionItem(item, n, page_name) {
     title.classList.add('home-section-item-title', 'item-title');
     title.textContent = `${n} - ${item.name}`;
 
+    let description;
     if(item.small_description){
-        var description = document.createElement('div');
+        description = document.createElement('div');
         description.classList.add('home-section-item-description', 'item-description');
         description.textContent = item.small_description;
     }
 
+    let info;
     if(item.publishers && item.expires){
-        var info = document.createElement('div');
+        info = document.createElement('div');
         info.classList.add('home-section-item-info');
         info.textContent = `${item.publishers[0].name} - Ends ${item.expires}`;
     }else if(item.expires){
-        var info = document.createElement('div');
+        info = document.createElement('div');
         info.classList.add('home-section-item-info');
         info.textContent = `Ends ${item.expires}`;
     }else if(item.info){
-        var info = document.createElement('div');
+        info = document.createElement('div');
         info.classList.add('home-section-item-info');
         info.textContent = item.info;
     }
 
+    let link;
     if(item.external_link){
-        var link = document.createElement('a');
+        link = document.createElement('a');
         link.href = item.external_link;
         link.classList.add('home-section-item-outer-link', 'home-author');
         link.textContent = 'Visit Project';
     }
 
+    let authorContainer;
     if(item.author){
-        var authorContainer = document.createElement('div');
+        authorContainer = document.createElement('div');
         authorContainer.classList.add('home-section-item-author', 'item-author');
         authorContainer.innerHTML = `by&nbsp;`;
 

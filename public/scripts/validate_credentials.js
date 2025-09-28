@@ -8,10 +8,11 @@ const errorEmailNotValid = document.querySelector('#error-emailNotValid');
 
 function validateCredentials(event) {
     
-    var username = form.username.value;
-    var password = form.password.value;
+    const username = form.username.value;
+    const password = form.password.value;
+    let email;
     if(form.email)
-        var email = form.email.value;
+        email = form.email.value;
 
     if(errorFillAllFields){
         if (username.length == 0 || password.length == 0 || (form.email && email.length == 0)) {

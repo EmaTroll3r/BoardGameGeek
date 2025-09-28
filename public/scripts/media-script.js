@@ -86,8 +86,10 @@ function createMediaItem(item, isMainComment) {
     dateDiv.classList.add('media-item-header-date');
     dateDiv.textContent = formatPublishDate(item.created_at);
 
+    let fileWrap;
+    let itemImg;
     if(isMainComment && item.media_type=="file"){
-        var fileWrap = document.createElement('div');
+        fileWrap = document.createElement('div');
         fileWrap.id = 'media-item-file-wrapper';
         fileWrap.classList.add('media-item');
 
@@ -103,7 +105,7 @@ function createMediaItem(item, isMainComment) {
         fileWrap.appendChild(fileType);
 
     }else if(isMainComment && item.uri){
-        var itemImg = document.createElement('img');
+        itemImg = document.createElement('img');
         itemImg.id = "media-item-img";
         itemImg.src = item.uri;
         itemImg.alt = item.title;
@@ -120,8 +122,9 @@ function createMediaItem(item, isMainComment) {
     else
         textDiv.textContent = item.text_comment;
 
+    let likeWrap;
     if(isMainComment){
-        var likeWrap = document.createElement('div');
+        likeWrap = document.createElement('div');
         likeWrap.id = 'media-item-likeButton-wrapper';
 
         const likeIcon = document.createElement('i');
@@ -139,9 +142,9 @@ function createMediaItem(item, isMainComment) {
         likeWrap.appendChild(likeNum);
     }
 
-
+    let deleteButton;
     if(item.uploader.id == user_id){
-        var deleteButton = document.createElement('i');
+        deleteButton = document.createElement('i');
         deleteButton.classList.add('fa-solid','fa-trash','media-delete-button');
         // console.log(item)
         deleteButton.dataset.comment_id = item.id;
