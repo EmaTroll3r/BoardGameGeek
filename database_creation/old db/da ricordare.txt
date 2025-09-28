@@ -190,3 +190,7 @@ HomeController.phph:list_boardgames() invece di fare tante query avrei potuto fa
 
 media.blade.php:onCancelButtonClick()
     form.reset(); // svuota la textarea (e ripristina eventuali valori iniziali)
+
+
+home-style.css: .item:hover img
+    filter: brightness(0.85);    //riduce la luminosità dell'elemento al 85% (quindi lo scurisce del 15%)
