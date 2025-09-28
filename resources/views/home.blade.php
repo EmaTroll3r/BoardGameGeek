@@ -1,6 +1,7 @@
 
 <!-- Emanuele Costanzo 1000046881 -->
 <!-- Original website https://boardgamegeek.com -->
+<!-- My Site http://localhost/BoardGameGeek/public/home -->
 
 <!DOCTYPE html>
 <html>
