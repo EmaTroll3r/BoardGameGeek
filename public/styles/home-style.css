@@ -119,8 +119,6 @@ a.item {
 
 #home-explore-sperator-hr{
     display: none;
-    /* width: calc(100% + 30px);
-    margin: 20px -15px; */
 }
 
 .home-explore-articles-item{
@@ -177,15 +175,9 @@ a.item {
 .home-section-content{
     display: flex;
     justify-content: space-between;
-    overflow-x: auto;
     gap: 20px;
     width: 100%;
-    scrollbar-width: none;
-}
-
-.home-section-arrowRight{
-    position: fixed;
-    color: red;
+    
 }
 
 
@@ -377,10 +369,4 @@ a.item {
     .home-section-item{
         width: 225px;
     }
-
-    /* #home-explore-sperator-hr{
-        width: calc(100% + 40px);
-        margin-right: -20px;
-        margin-left: -20px;
-    } */
 }
