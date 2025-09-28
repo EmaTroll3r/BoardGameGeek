@@ -1,0 +1,192 @@
+home-script:134 
+
+    \u00A0 è uno spazio non interrompibile
+
+
+
+GameController:get_ebay_price
+
+    1. Preparazione delle credenziali
+
+    <?php
+        $client_id = env('EBAY_APP_ID');
+        $client_secret = env('EBAY_CERT_ID');
+
+    env('EBAY_APP_ID'): Legge l'App ID dal file .env
+    env('EBAY_CERT_ID'): Legge il Certificate ID (Client Secret) dal file .env
+    Perché: Serve per autenticarsi con eBay (come username e password per API)
+
+
+
+    2. Inizializzazione cURL per ottenere il token
+
+    <?php
+        $ch = curl_init();
+
+    Cosa fa: Crea una "sessione" cURL
+    Analogia: È come "prendere il telefono" per fare una chiamata
+
+
+
+    3. Configurazione per richiesta token
+
+    <?php
+        curl_setopt($ch, CURLOPT_URL, 'https://api.sandbox.ebay.com/identity/v1/oauth2/token');
+
+    Cosa fa: Dice a cURL di chiamare l'endpoint OAuth di eBay
+    Perché questo URL: È il "centralino" di eBay che rilascia i token di accesso
+
+    <?php
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    Cosa fa: Dice a cURL di restituire la risposta invece di stamparla
+    Senza questo: Il token verrebbe stampato direttamente sulla pagina
+
+    <?php
+        curl_setopt($ch, CURLOPT_POST, 1);
+
+    Cosa fa: Dice a cURL di usare il metodo POST invece di GET
+    Perché POST: I dati sensibili (credenziali) vanno inviati via POST
+
+
+
+    4. Invio dei dati per ottenere il token
+
+    <?php
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'grant_type=client_credentials&scope=https://api.ebay.com/oauth/api_scope');
+
+    grant_type=client_credentials: Dice "voglio un token per app, non per utente"
+    scope=...: Specifica i permessi che l'app vuole (in questo caso, accesso API generale)
+
+    <?php
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Basic '.base64_encode($client_id.':'.$client_secret)));
+
+    base64_encode($client_id.':'.$client_secret): Codifica "AppID:Secret" in Base64
+    Authorization: Basic: Standard HTTP per autenticazione base
+    Esempio: Se AppID="abc123" e Secret="xyz789", diventa "Authorization: Basic YWJjMTIzOnh5ejc4OQ=="
+
+
+
+    5. Esecuzione della richiesta token
+
+    <?php
+        $token = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+
+    curl_exec($ch): Esegue la chiamata HTTP e restituisce la risposta
+    json_decode(..., true): Converte la risposta JSON in array PHP
+    curl_close($ch): Chiude la connessione e libera memoria
+    Risultato: $token contiene qualcosa come ['access_token' => 'abc123xyz', 'expires_in' => 7200]
+
+
+
+    6. Preparazione query di ricerca
+
+    <?php
+        $query = urlencode($item);
+        $url = 'https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search?q=' . $query . '&limit=1&sort=price';
+
+    urlencode($item): Codifica il nome del gioco per URL (es: "Gloom Haven" → "Gloom%20Haven")
+    limit=1: Chiede solo 1 risultato (il più economico)
+    sort=price: Ordina per prezzo crescente (il più economico prima)
+
+
+
+    7. Nuova chiamata cURL per la ricerca
+
+    <?php
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    Nuovo curl_init(): Crea una nuova sessione (la precedente era per il token)
+    Stesse opzioni: URL della ricerca e restituisci risposta
+
+
+
+    8. Autenticazione con token
+
+    <?php
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer '.$token['access_token']));
+
+    Bearer: Tipo di autenticazione per token OAuth
+    $token['access_token']: Usa il token ottenuto al punto 5
+    Esempio: "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+
+
+
+    9. Esecuzione ricerca e risposta
+
+    <?php
+        $res = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($res, true);
+        return $data;
+
+
+    curl_exec($ch): Esegue la ricerca su eBay
+    curl_close($ch): Chiude la seconda connessione
+    json_decode($res, true): Converte la risposta eBay in array PHP
+    return $data: Restituisce tutti i dati grezzi di eBay
+
+
+    
+    Flusso Completo Semplificato:
+    
+    "Ciao eBay, sono l'app XYZ con credenziali ABC" → Ricevi token
+    "Cerca 'Gloomhaven' ordinato per prezzo, dammi solo il primo" → Ricevi risultati
+    Restituisci i dati al frontend
+    È come fare due telefonate: una per "registrarsi" e una per "fare la domanda vera"!
+
+
+
+
+Boardgame.php: completeMediaInformations($media_type)
+
+    <?php
+        $boardgame = Boardgame::find(1);
+        $completeVideos = $boardgame->completeMediaInformations('video')->get();
+
+
+gameController:rate_boardgame()
+
+    return "Error: user not logged in";
+
+    il problema è che la risposta avrà sempre status HTTP 200 ci vorrebbe 
+
+    return response()->json([
+        'status' => 'error',
+        'message' => 'User not logged in'
+    ], 403);
+
+
+object-fit: cover;
+
+    ritaglia l'immagine se necessario, mantenendo il suo aspect ratio. 
+    In pratica l'immagine copre tutta la box senza distorsioni, ma parti ai bordi possono essere tagliate.
+    Punti rapidi
+        - Serve una dimensione della box (width/height o aspect-ratio)
+        - Mantiene le proporzioni; riempie la box interamente
+        - Usa object-position per spostare il punto di ritaglio (es. center, top right, 20% 10%)
+
+
+response.json()
+
+    Sarebbe corretto metterlo ma non sono sicuro che era stato spiegato
+
+
+HomeController.phph:list_boardgames() invece di fare tante query avrei potuto fare 
+        
+    $baseQuery = Boardgame::where('is_base_game', TRUE);
+
+    $data['boardGames'] = clone $baseQuery->orderByDesc('bgg_ELO')->limit(5)->get();
+    $data['crowdfunding'] = clone $baseQuery->orderBy('complexity_rating')->limit(5)->get();
+
+    è importante usare clone sennò una volta fatto il get(), poi la query si "consuma", ma ciò
+    non accade in GameController.php:get_game_data perchè ogni volta che faccio 
+    $boardgame->designers()->get();     ->desisgners() crea una nuovo Query Builder, mentre 
+    Boardgame::find($id) restituisce un Eloquent Model (un oggetto che rappresenta un record del database)
+
+
+media.blade.php:onCancelButtonClick()
+    form.reset(); // svuota la textarea (e ripristina eventuali valori iniziali)

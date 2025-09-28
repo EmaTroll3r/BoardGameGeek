@@ -1,0 +1,104 @@
+sto saltando editions per adesso dai modelli
+validate_credentials.js
+cosa faceva defer?
+::after cosa faceva?
+ripassare il metodo di cattura degli eventi per far sparire i submenu in nav-script.js
+completare il db (schema er)
+perchè in game-style.css?
+    #game-media-seeAll:hover::before{
+        text-decoration: underline;
+    }
+new Date in game-script.js: formatPublishDate()
+se avanza tempo anche il bgg_rank
+tag i
+event.currentTarget vs event.target
+come funziona fetch e json
+ordinare meglio le routes in web.php
+media-script.js :toggleLikeButton() aggiornarlo con un error invisibile su html
+sistemare i margin in home-style.css (non capisco qual'è il problema)
+<meta name="viewport" content="width=device-width, initial-scale=1">
+username e mail in register controllare
+var VS const VS let
+game-script.js:rate_boardgame serve che attenda la risposta o va bene anche solo il fetch?
+
+
+-------------- DA MODIFICRE PRIMA DELL'ESAME---------------------------------
+
+in database_tables.sql, TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -----> TIMESTAMP NOT NULL DEFAULT 0
+attivare videos sia in backednd (HomeController.php: 54) che in forntend (home-script.js: 274)
+attivare fetch a ebay da frontend (game-script.js:622)
+
+
+
+Domande
+sono okay le richieste con API?
+i requisiti richiedono o apikey o OAuth2
+fare i trigger?
+giusta la query a HomeController.php:52?
+è giusto leggere il gameId come fatto a game-script.js:60 e game.blade.php:236?
+gameController:92 meglio come ho fatto oppure
+    return response()->json([
+        'status' => 'error',
+        'message' => 'User not logged in'
+    ], 403);
+è giusto fare i controlli per le richieste al backend e restituire gli errori in quel modo (es GameController: get_game_data())?
+game-script.js:rate_boardgame serve che attenda la risposta o va bene anche solo il fetch?
+dovrei modificare game e home per fornire direttamente i dati senza fare la fetch da frontend? se si, come fare?
+il prof ha mai parlato di aria-label?
+è okay la soluzione del search nella nav (ossia non usare il form e mettere un evento sul tag i)?
+come funziona search_boardgames(Request $request, $q)?
+response.json() ?
+è giusto usare BASE_URL nelle fetch?
+view in mediaController:post_comment
+
+altro
+
+    DIFFERENZA TRA textContnet E innerHTML (js)
+        textContent: imposta o restituisce solo il testo di un elemento, ignorando qualsiasi HTML.
+        innerHTML: imposta o restituisce il contenuto HTML di un elemento, quindi interpreta i tag HTML.
+
+    
+    // public function applyFilter($query, $field, $value) {        // In App\Models\Boardgame.php
+    //     return $query->where($fiels,$value);
+    // }
+
+    HomeController.phph:list_boardgames() invece di fare tante query avrei potuto fare 
+        
+        $baseQuery = Boardgame::where('is_base_game', TRUE);
+
+        $data['boardGames'] = clone $baseQuery->orderByDesc('bgg_ELO')->limit(5)->get();
+        $data['crowdfunding'] = clone $baseQuery->orderBy('complexity_rating')->limit(5)->get();
+
+        è importante usare clone sennò una volta fatto il get(), poi la query si "consuma", ma ciò
+        non accade in GameController.php:get_game_data perchè ogni volta che faccio 
+        $boardgame->designers()->get();     ->desisgners() crea una nuovo Query Builder, mentre 
+        Boardgame::find($id) restituisce un Eloquent Model (un oggetto che rappresenta un record del database)
+
+
+    Query Builder VS Istanze VS Collections
+
+        Concetti chiave
+
+        Query builder: oggetti che costruiscono query SQL (DB::table(...) o il Builder usato da Eloquent). Eseguendo ->get() ottieni risultati (Collection o array di stdClass).
+        Model (classe Eloquent): la classe PHP che rappresenta una tabella (es. Media, User). Usata sia per costruire query (Media::where(...)) sia per istanziare record.
+        Istanza di Model: singolo record (es. $media = Media::find(1)). Ha proprietà e metodi per relazioni ($media->uploader) e operazioni (->delete()).
+        Collection: insieme (collezione) di istanze di Model (o oggetti stdClass per DB::table()). Ritornata da ->get().
+        Return types comuni
+
+        ->get() → Collection (0..n record)
+        ->first() → Model|null (il primo record)
+        ::find($id) → Model|null (per chiave primaria)
+        ->pluck('col') → Collection di valori
+        ->value('col') → singolo valore
+        ->delete() su query → numero di righe cancellate
+        ->delete() su istanza → bool / comportamento di Model
+        Eager loading vs loading dopo
+
+        with() è usato sulla query della classe/Builder per includere relazioni nella stessa query:
+        Media::with('uploader')->find($id); // OK — carica media + uploader
+        load() / loadCount() si usano su un'istanza già ottenuta:
+        $media = Media::find($id);
+        $media->load('uploader');
+        $media->loadCount('comments');
+        Perché non usare with() su un'istanza:
+        $media->with(...) non “modifica” l'istanza; quella chiamata costruisce una nuova query sul model, quindi porta a risultati inattesi. Usa load() se hai già l'istanza.

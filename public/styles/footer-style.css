@@ -1,0 +1,148 @@
+
+
+#footer-main{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #3f3a60;
+    color: #fff;
+    padding: 40px 16px;
+    font-size: 1rem;
+}
+
+.footer-container{
+    width: 25%;
+}
+
+.footer-title{
+    font-family: proxima-nova-bold, Arial, sans-serif;
+    color: #cfcdd7;
+    margin-bottom: 14px;
+    font-size: 0.875rem;
+}
+
+.footer-content a{
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.footer-content a:hover{
+    text-decoration: underline;
+}
+
+#footer-legalNotice{
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #100f18;
+    color: #cfcdd7;
+    padding: 14px;
+    font-weight: 550;
+}
+
+#footer-bigScreen{
+    display: block;
+}
+
+#footer-wrapper{
+    display: block;
+    width: calc(100% + 2 * var(--body-padding));
+    margin-left: calc(var(--body-padding) * -1);
+    margin-top: auto;
+}
+
+#footer-connect-social{
+    display: flex;
+    gap: 20px;
+}
+
+#footer-connect-social a{
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+#footer-connect-downloads{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 20px;
+}
+
+#footer-connect-downloads img{
+    height: 40px;
+}
+
+/* --------------- footer-medium --------------- */
+
+#footer-mediumScreen{
+    display: none;
+}
+
+#footer-mediumScreen #footer-main{
+    flex-wrap: wrap;
+}
+
+#footer-mediumScreen #footer-wrapper2{
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* --------------- footer-small --------------- */
+
+
+#footer-smallScreen{
+    display: none;
+}
+
+#footer-smallScreen #footer-main{
+    flex-wrap: wrap;
+}
+
+#footer-smallScreen #footer-wrapper2{
+    margin-top: 20px;
+}
+
+#footer-smallScreen #footer-wrapper2 .footer-container{
+    width: 100%;
+}
+
+#footer-smallScreen #footer-connect-downloads{
+    flex-wrap: nowrap;
+}
+
+
+@media (max-width: 1050px) {
+    
+    #footer-bigScreen{
+        display: none;
+    }
+
+    #footer-mediumScreen{
+        display: block;
+    }
+
+    #footer-smallScreen{
+        display: none;
+    }
+
+}
+
+@media (max-width: 500px) {
+    
+    #footer-logo{
+        width: 100%;
+    }
+
+    #footer-bigScreen{
+        display: none;
+    }
+
+    #footer-mediumScreen{
+        display: none;
+    }
+
+    #footer-smallScreen{
+        display: block;
+    }
+}

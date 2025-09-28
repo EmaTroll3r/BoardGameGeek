@@ -1,0 +1,97 @@
+#main{
+    align-items: flex-start;
+    max-width: 1330px;
+    width: 100%;
+}
+
+article{
+    padding: 15px;
+    max-width: 1140px;
+}
+
+#search-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.search-table-row{
+    height: 80px;
+}
+
+.search-table-cell{
+    border: 1px solid var(--light-gray);
+    padding: 5px 10px;
+    align-items: center;
+    min-width: 40px;
+}
+
+.cell-value-bold{
+    font-family: proxima-nova-bold, Arial, sans-serif;
+}
+
+.cell-with-img{
+    width: 1%;
+}
+
+.cell-with-value{
+    text-align: center;
+}
+
+.cell-img{
+    height: 70px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.cell-img:hover{
+    filter: brightness(0.85);
+}
+
+.cell-with-title{
+    padding: 15px;
+}
+
+.cell-title-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.cell-title-wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+.cell-title-name{    
+    font-family: proxima-nova-bold, Arial, sans-serif;
+    color: var(--blue-link);
+}
+
+.cell-title-year{
+    margin-left: 5px;
+    font-size: 0.875rem;
+    color: var(--text-color-secondary);
+}
+
+.cell-title-description{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+}
+
+.search-oder-button{
+    font-family: proxima-nova-bold, Arial, sans-serif;
+    color: var(--blue-link);
+}
+
+.search-oder-button[data-order-dir = "asc"]::after{
+    content: " ▲"
+    /* " ‸↑↓▲▼" */
+}
+
+.search-oder-button[data-order-dir = "desc"]::after{
+    content: " ▼"
+    /* " ‸↑↓▲▼" */
+}
+
