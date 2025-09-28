@@ -2,36 +2,6 @@
 <!-- Emanuele Costanzo 1000046881 -->
 <!-- Original website https://boardgamegeek.com -->
 
-
-<!--
-Aggiungi l'Alias
-nel file httpd.conf
-Trova la sezione <IfModule alias_module> (intorno alla riga 350).
-Aggiungi questa riga alla fine della sezione:
-
-Alias /bgg "C:/Cartella/roba-di-ema/scuola/programmazione/Linguaggi/HTML/Bgg-Copy/full_site"
-
-poi intorno alla riga 280, dopo <Directory "C:/xampp/htdocs"> .... </Directory>  aggiungi
-
-<Directory "C:/Cartella/roba-di-ema/scuola/programmazione/Linguaggi/HTML/Bgg-Copy/full_site">
-    Options Indexes FollowSymLinks Includes ExecCGI
-    AllowOverride All
-    Require all granted
-</Directory>
-
-
-
-
-Per creare il database:
-
-Apri phpMyAdmin (di solito su http://localhost/phpmyadmin).
-Crea un nuovo database chiamato bgg.
-Importa le tabelle e i dati:
-Vai su "Importa" nel database bgg.
-Seleziona il file database_tables.sql e importa.
-Se hai anche un file insert.sql, importalo dopo per aggiungere i dati.
--->
-
 <!DOCTYPE html>
 <html>
     <head>

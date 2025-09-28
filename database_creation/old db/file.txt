@@ -102,3 +102,52 @@ altro
         $media->loadCount('comments');
         Perché non usare with() su un'istanza:
         $media->with(...) non “modifica” l'istanza; quella chiamata costruisce una nuova query sul model, quindi porta a risultati inattesi. Usa load() se hai già l'istanza.
+
+
+
+
+Setup
+
+    cd C:\xampp\htdocs
+    git clone https://github.com/EmaTroll3r/BoardGameGeek.git
+    cd BoardGameGeek
+    composer install
+    Copiare .env
+
+                npm install
+                npm run dev
+                php artisan storage:link
+
+    se da l'errore Required vendor rilanciare       cd C:\xampp\htdocs\BoardGameGeek
+                                                    composer install
+
+
+    
+    <!--
+    Aggiungi l'Alias
+    nel file httpd.conf
+    Trova la sezione <IfModule alias_module> (intorno alla riga 350).
+    Aggiungi questa riga alla fine della sezione:
+
+    Alias /bgg "C:/Cartella/roba-di-ema/scuola/programmazione/Linguaggi/HTML/Bgg-Copy/full_site"
+
+    poi intorno alla riga 280, dopo <Directory "C:/xampp/htdocs"> .... </Directory>  aggiungi
+
+    <Directory "C:/Cartella/roba-di-ema/scuola/programmazione/Linguaggi/HTML/Bgg-Copy/full_site">
+        Options Indexes FollowSymLinks Includes ExecCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+
+
+
+    Per creare il database:
+
+    Apri phpMyAdmin (di solito su http://localhost/phpmyadmin).
+    Crea un nuovo database chiamato bgg.
+    Importa le tabelle e i dati:
+    Vai su "Importa" nel database bgg.
+    Seleziona il file database_tables.sql e importa.
+    Se hai anche un file insert.sql, importalo dopo per aggiungere i dati.
+    -->
