@@ -43,8 +43,10 @@ class MediaController extends BaseController
     public function toggle_like_boardgame($media_id){
 
         $user_id = Session::get('user_id');
-        if(!$user_id)
-            return "Error: user not logged in";
+        if(!$user_id){
+            $data['status'] = "Error: user not logged in";
+            return $data;
+        }
 
         $like = Like::where('user_id',$user_id)->where('media_id',$media_id)->first();
 
@@ -57,7 +59,8 @@ class MediaController extends BaseController
             $like->save();
         }
 
-        return "OK";
+        $data['status'] = "OK";
+        return $data;
     }
 
     public function post_comment(){

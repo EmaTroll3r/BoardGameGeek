@@ -7,7 +7,6 @@ const currentOrderBy = main.dataset.orderby.trim();
 const currentOrderDir = main.dataset.orderdir.trim();
 console.log('q',q,'\ncurrentOrderBy',currentOrderBy, '\ncurrentOrderDir',currentOrderDir)
 
-
 fetch(BASE_URL + 'searchBoardgames/' + q + "/" + currentOrderBy + "/" + currentOrderDir)
 .then(onResponseReturnJson)
 .then(buildPage)
@@ -75,14 +74,14 @@ function createRow(item){
         tds[2].appendChild(title_container);
 
     tds[3].classList.add('cell-with-value','cell-value-bold');
-        if(item.current_user_interaction.length != 0 && item.current_user_interaction[0].rating != null)
+        if(item.current_user_interaction.length !== 0 && item.current_user_interaction[0].rating !== null)
             tds[3].textContent = item.current_user_interaction[0].rating;
         else
             tds[3].textContent = "N/A";
 
     tds[4].classList.add('cell-with-value','cell-value-bold');
-        if(item.current_user_interaction.length != 0)
-            tds[4].textContent = item.current_user_interaction[0].liked == 1 ? 'yes': 'no'
+        if(item.current_user_interaction.length !== 0)
+            tds[4].textContent = item.current_user_interaction[0].liked === 1 ? 'yes': 'no'
         else
             tds[4].textContent = 'no'
 
@@ -114,7 +113,7 @@ function buildPage(data){
 
     console.log(data)
 
-    if(currentOrderBy == "default"){
+    if(currentOrderBy === "default"){
         for(let i=0; i<data.start_with.length;i++){
             table.appendChild(createRow(data.start_with[i]));
         }
@@ -134,8 +133,8 @@ function orderTableBy(event){
     const target = event.currentTarget;
     const newOrderBy = target.dataset.orderBy;
     
-    if(newOrderBy == currentOrderBy){
-        const newOrderDir = currentOrderDir == 'desc' ? 'asc': 'desc';
+    if(newOrderBy === currentOrderBy){
+        const newOrderDir = currentOrderDir === 'desc' ? 'asc': 'desc';
         window.location.href = BASE_URL + "search/" + q + "/" + newOrderBy + "/" + newOrderDir;
     }else{
         window.location.href = BASE_URL + "search/" + q + "/" + newOrderBy + "/" + currentOrderDir;
@@ -147,9 +146,9 @@ for(let i=0;i<searchOrderButtons.length;i++){
     searchOrderButtons[i].addEventListener('click', orderTableBy)
 }
 
-if(currentOrderBy != "deafult"){
+if(currentOrderBy !== "deafult"){
     for(let i=0;i<searchOrderButtons.length;i++){
-        if (searchOrderButtons[i].dataset.orderBy == currentOrderBy){
+        if (searchOrderButtons[i].dataset.orderBy === currentOrderBy){
             searchOrderButtons[i].dataset.orderDir = currentOrderDir;
         }
     }

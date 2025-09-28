@@ -8,8 +8,8 @@ const headerNPost = document.querySelector('#media-header-nPost');
 const cancelButton = document.querySelector('#media-comments-form-button-cancel');
 const form = document.querySelector('#media-comments-form');
 
-media_id = main.dataset.mediaId;
-user_id = main.dataset.userId;
+media_id = parseInt(main.dataset.mediaId);
+user_id = parseInt(main.dataset.userId);
 
 
 fetch(BASE_URL + 'getMediaData/' + media_id)
@@ -18,12 +18,13 @@ fetch(BASE_URL + 'getMediaData/' + media_id)
 
 function fetchLikeMedia(event){
     fetch(BASE_URL + 'toggleLikeMedia/' + media_id)    
-    .then(onResponseReturnText)
+    .then(onResponseReturnJson)
     .then(toggleLikeButton)
 }
 
-function toggleLikeButton(response){
-    if(response == "OK"){
+function toggleLikeButton(data){
+    // console.log(data)
+    if(data.status === "OK"){
         const likeButton = document.querySelector("#media-item-like-button");
         const likeNumber = document.querySelector("#media-item-likeButton-number");
 
@@ -34,14 +35,14 @@ function toggleLikeButton(response){
         else        
             likeNumber.dataset.value = parseInt(likeNumber.dataset.value) - 1;
     }else{
-        alert(response)
+        alert(data.status);
     }
 }
 
 
 function createMediaItem(item, isMainComment) {
 
-    console.log(item)
+    // console.log(item)
     
     const userLink = BASE_URL + "user/" + item.uploader.id;
 
@@ -49,7 +50,7 @@ function createMediaItem(item, isMainComment) {
     mediaItem.classList.add('media-item');
     mediaItem.dataset.comment_id = item.id;
     
-    if(item.uploader.id == user_id)
+    if(item.uploader.id === user_id)
         mediaItem.classList.add('media-green-background');
 
     if(isMainComment){
@@ -88,7 +89,7 @@ function createMediaItem(item, isMainComment) {
 
     let fileWrap;
     let itemImg;
-    if(isMainComment && item.media_type=="file"){
+    if(isMainComment && item.media_type === "file"){
         fileWrap = document.createElement('div');
         fileWrap.id = 'media-item-file-wrapper';
         fileWrap.classList.add('media-item');
@@ -143,7 +144,7 @@ function createMediaItem(item, isMainComment) {
     }
 
     let deleteButton;
-    if(item.uploader.id == user_id){
+    if(item.uploader.id === user_id){
         deleteButton = document.createElement('i');
         deleteButton.classList.add('fa-solid','fa-trash','media-delete-button');
         // console.log(item)
@@ -161,7 +162,7 @@ function createMediaItem(item, isMainComment) {
 
     container.appendChild(header);
 
-    if(isMainComment && item.media_type=="file")
+    if(isMainComment && item.media_type === "file")
         container.appendChild(fileWrap);
     else if(isMainComment && item.uri)
         itemContentWrap.appendChild(itemImg);    
@@ -178,7 +179,7 @@ function createMediaItem(item, isMainComment) {
 
     mediaItem.appendChild(itemContentWrap);
 
-    if(item.uploader.id == user_id)
+    if(item.uploader.id === user_id)
         mediaItem.appendChild(deleteButton);
 
     return mediaItem;
@@ -188,7 +189,7 @@ function createMediaItem(item, isMainComment) {
 
 function buildPage(data){
 
-    // console.log(data);
+    console.log(data);
     document.title = data.media.title + " | BoardGameGeek";
 
     headerLink.href = BASE_URL + 'game/' + data.boardgame.id;
@@ -199,7 +200,8 @@ function buildPage(data){
 
     mediaContainer.appendChild(createMediaItem(data.media, true));
 
-    if(data.currentUserLike != null){
+    if(data.currentUserLike !== null){
+        console.log('in')
         const likeButton = document.querySelector("#media-item-like-button");
         likeButton.classList.toggle('media-item-like-button-active');
     }
@@ -215,7 +217,7 @@ function onCancelButtonClick(event){
 }
 
 function addNewComment(json){
-    if(json.status == "OK"){
+    if(json.status === "OK"){
         form.reset();
         mediaContainer.appendChild(createMediaItem(json.newComment));
         headerNPost.dataset.value = parseInt(headerNPost.dataset.value) + 1;
@@ -249,7 +251,7 @@ function onDeleteButtonClick(event){
 
 function removeComment(json){
 
-    if(json.status == "OK"){
+    if(json.status === "OK"){
         const deletedComment = document.querySelector(`[data-comment_id="${json.comment_id}"]`);
         if(deletedComment){
             deletedComment.remove();

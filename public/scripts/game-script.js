@@ -54,7 +54,7 @@ const ratingStars = document.querySelectorAll('.game-infoPanel-rating-star');
 const likeImg = document.querySelector('#game-infoPanel-button-likes-img');
 
 
-gameId = document.querySelector("#main").dataset.id;
+gameId = parseInt(document.querySelector("#main").dataset.id);
 fetch(BASE_URL + 'getGameData/' + gameId)
 .then(onResponseReturnJson)
 .then(buildPage);
@@ -668,7 +668,7 @@ function buildPage(data) {
             }
         }
         // console.log(data.interaction.liked)
-        if(data.interaction.liked == 1){
+        if(data.interaction.liked === 1){
             likeImg.classList.add('game-infoPanel-button-likes-img-active')
             console.log('added')
         }
@@ -733,7 +733,7 @@ function ebayPricing(items){
 
 function rateBoardgame(data){
     
-    if(data.status == "OK"){
+    if(data.status === "OK"){
         const rateValue = data.rateValue;
         for(let i=0; i<rateValue;i++){
             ratingStars[i].classList.add('game-infoPanel-rating-star-active')
@@ -757,7 +757,7 @@ function onRatingStarsClick(event){
 
 function toggleLikeBoardgame(data){
     
-    if(data.status == "OK"){
+    if(data.status === "OK"){
         likeImg.classList.toggle('game-infoPanel-button-likes-img-active');
 
         if(likeImg.classList.contains('game-infoPanel-button-likes-img-active'))

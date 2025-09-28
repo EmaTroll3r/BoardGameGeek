@@ -15,7 +15,7 @@ function validateCredentials(event) {
         email = form.email.value;
 
     if(errorFillAllFields){
-        if (username.length == 0 || password.length == 0 || (form.email && email.length == 0)) {
+        if (username.length === 0 || password.length === 0 || (form.email && email.length === 0)) {
             event.preventDefault();
             errorFillAllFields.classList.remove('hidden');
             return false;
