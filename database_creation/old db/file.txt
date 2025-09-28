@@ -1,9 +1,7 @@
 sto saltando editions per adesso dai modelli
-validate_credentials.js
 cosa faceva defer?
 ::after cosa faceva?
 ripassare il metodo di cattura degli eventi per far sparire i submenu in nav-script.js
-completare il db (schema er)
 perchè in game-style.css?
     #game-media-seeAll:hover::before{
         text-decoration: underline;
@@ -15,9 +13,6 @@ event.currentTarget vs event.target
 come funziona fetch e json
 ordinare meglio le routes in web.php
 media-script.js :toggleLikeButton() aggiornarlo con un error invisibile su html
-sistemare i margin in home-style.css (non capisco qual'è il problema)
-<meta name="viewport" content="width=device-width, initial-scale=1">
-username e mail in register controllare
 var VS const VS let
 game-script.js:rate_boardgame serve che attenda la risposta o va bene anche solo il fetch?
 
