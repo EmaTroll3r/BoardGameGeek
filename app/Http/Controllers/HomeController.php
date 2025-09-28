@@ -98,7 +98,7 @@ class HomeController extends BaseController
                                         ->get();     
 
         $data['blogs'] = Media::with('uploader:id,username')
-                                        ->where('media_type', 'news')
+                                        ->where('media_type', 'video')
                                         ->with('boardgame')
                                         ->orderByDesc('n_likes')
                                         ->take(5)
