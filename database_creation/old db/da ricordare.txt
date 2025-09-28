@@ -222,3 +222,16 @@ flex-wrap: wrap
         - nowrap (default) — nessun wrapping, tutto su una riga/colonna (può overflow).
         - wrap — permette il wrap normale (nuove righe sotto).
         - wrap-reverse — come wrap ma le righe aggiuntive vengono poste sopra (o a sinistra per column).
+
+
+::after 
+    è una pseudo‑elemento CSS che crea un elemento virtuale come ultimo figlio dell'elemento selezionato. 
+    Serve per inserire contenuto o elementi decorativi senza modificare l’HTML.
+
+
+text-decoration-color: var(--gray-link);
+    imposta il colore della decorazione del testo (sottolineatura, linea sopra, linea attraverso).
+
+text-underline-offset: 4px;
+    controlla la distanza verticale della linea di sottolineatura rispetto al testo 
+    (ossia quanto la linea è “spostata” rispetto alla posizione predefinita).

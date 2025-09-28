@@ -252,15 +252,15 @@
                     <div id="game-infoPanel-content">
                         <div id="game-infoPanel-rank">
                             <i class="fa-solid fa-crown"></i>
-                            Rank:
+                            BGG ELO:
                             <div class="game-infoPanel-rank-item">
-                                overall<a href="#" id="game-infoPanel-rank-overall-value" class="dotted-underlined-link" data-rank="37"></a>
+                                OVERALL<a href="#" id="game-infoPanel-rank-overall-value" class="dotted-underlined-link" data-rank="37"></a>
                             </div>
                             <div class="game-infoPanel-rank-item">
-                                thematic<a href="#" id="game-infoPanel-rank-thematic-value" class="dotted-underlined-link"></a>
+                                THEMATIC<a href="#" id="game-infoPanel-rank-thematic-value" class="dotted-underlined-link"></a>
                             </div>
                             <div class="game-infoPanel-rank-item">
-                                family<a href="#" id="game-infoPanel-rank-family-value" class="dotted-underlined-link"></a>
+                                FAMILY<a href="#" id="game-infoPanel-rank-family-value" class="dotted-underlined-link"></a>
                             </div>
                         </div>
                         <div id="game-infoPanel-info-container">
@@ -378,7 +378,7 @@
                                 <i class="fa-solid fa-cart-shopping game-infoPanel-button-img"></i>
                                 <div class="game-infoPanel-button-text">Buy a Copy</div>
                             </a>
-                            <a id="game-infoPanel-button-SleeveIt" class="game-infoPanel-button" href="#">
+                            <a class="game-infoPanel-button game-infoPanel-button-SleeveIt" href="#">
                                 <img class="game-infoPanel-button-img" src="{{ url('images/game-infoPanel-button-sleeveIt.svg') }}" alt="Sleeve It">
                                 <div class="game-infoPanel-button-text">Sleeve It</div>
                             </a>
@@ -446,14 +446,14 @@
                                 </div>
 
                                 <div id="game-description-honors-container" class="game-description-container">
-                                    <div id="game-description-honors-title"  class="game-smallTitle">Awards & Honors</div>
+                                    <div id="game-description-honors-title"  class="game-smallTitle">AWARD & HONORS</div>
                                     <div id="game-description-honors-content" class="game-description-content">
                                  
                                     </div>
                                 </div>
 
                                 <div id="game-description-officialLinks-container" class="game-description-container">
-                                    <div id="game-description-officialLinks-title"  class="game-smallTitle">official links</div>
+                                    <div id="game-description-officialLinks-title"  class="game-smallTitle">OFFICIAL LINKS</div>
                                     <div id="game-description-officialLinks-content"  class="game-description-content">
                                         <div class="game-description-officialLinks-item">
                                             <i class="fa-solid fa-link game-description-officialLinks-item-imgLink"></i>
@@ -468,7 +468,7 @@
 
                                 <div id="game-description-SuggestionsStats-wrapper" class="game-description-container">
                                     <div id="game-description-suggestions-container">
-                                        <div id="game-description-suggestions-title"  class="game-smallTitle">Additional Suggestions</div>
+                                        <div id="game-description-suggestions-title"  class="game-smallTitle">ADDITIONAL SUGGESTIONS</div>
                                         <div id="game-description-suggestions-content"  class="game-description-content">
                                             <div class="game-description-suggestions-item">
                                                 <div class="game-description-suggestions-item-title">
@@ -481,7 +481,7 @@
                                     </div>
                                     <hr class="game-vertical-hr">
                                     <div id="game-description-stats-container">
-                                        <div id="game-description-stats-title"  class="game-smallTitle">Community Stats</div>
+                                        <div id="game-description-stats-title"  class="game-smallTitle">COMMUNITY STATS</div>
                                         <div id="game-description-stats-content" class="game-description-content">
                                             <div class="game-description-stats-column">
                                                 <div class="game-description-stats-item">
@@ -548,7 +548,7 @@
                         <div id="game-buy-content">
                             <div id="game-buy-stores" class="game-buy-column">
                                 <div class="game-buy-column-wrapper">
-                                    <div id="game-buy-stores-title" class="game-smallTitle">Stores</div>
+                                    <div id="game-buy-stores-title" class="game-smallTitle">STORES</div>
                                     <div id="game-buy-stores-content" class="game-buy-content">
                                         
                                     </div>
@@ -557,11 +557,11 @@
                             </div>
                             <div id="game-geekMarket-stores" class="game-buy-column">
                                 <div class="game-buy-column-wrapper">
-                                    <div id="game-buy-geekMarket-title" class="game-smallTitle">GeekMarket</div>
+                                    <div id="game-buy-geekMarket-title" class="game-smallTitle">GEEKMARKET</div>
                                     <div id="game-buy-geekMarket-content" class="game-buy-content">
                                         <a href="#" class="game-buy-item">
                                             <div class="game-buy-geekMarket-item-image-container">
-                                                <div class="game-buy-geekMarket-item-image-conditions" data-game-conditions="New"></div>
+                                                <div class="game-buy-geekMarket-item-image-conditions">N</div>
                                                 <div class="game-buy-geekMarket-item-image-county">
                                                      <img src="https://cf.geekdo-static.com/images/flags/16x16/shadow/flag_germany.png" alt="flag_germany">   
                                                 </div>
@@ -574,7 +574,7 @@
                                         <hr>
                                         <a href="#" class="game-buy-item">
                                             <div class="game-buy-geekMarket-item-image-container">
-                                                <div class="game-buy-geekMarket-item-image-conditions" data-game-conditions="New"></div>
+                                                <div class="game-buy-geekMarket-item-image-conditions">N</div>
                                                 <div class="game-buy-geekMarket-item-image-county">
                                                      <img src="https://cf.geekdo-static.com/images/flags/16x16/shadow/flag_usa.png" alt="flag_usa">   
                                                 </div>
@@ -587,7 +587,7 @@
                                         <hr>
                                         <a href="#" class="game-buy-item">
                                             <div class="game-buy-geekMarket-item-image-container">
-                                                <div class="game-buy-geekMarket-item-image-conditions" data-game-conditions="New"></div>
+                                                <div class="game-buy-geekMarket-item-image-conditions">N</div>
                                                 <div class="game-buy-geekMarket-item-image-county">
                                                      <img src="https://cf.geekdo-static.com/images/flags/16x16/shadow/flag_england.png" alt="flag_england">   
                                                 </div>
@@ -599,9 +599,9 @@
                                         </a>  
                                     </div>
                                     <div id="game-buy-geekMarket-buttons-container">
-                                        <a id="game-buy-geekMarket-buttons-seeAll" class="game-buttons-seeAll" data-game-total="18" href="#">See All&nbsp;</a>
-                                        <a id="game-buy-geekMarket-buttons-sell" class="dotted-underlined-link" href="#">Sell a Copy</a>
-                                        <a id="game-buy-geekMarket-buttons-priceHistory" class="dotted-underlined-link" href="#">Price History</a>
+                                        <a id="game-buy-geekMarket-buttons-seeAll" class="game-buttons-seeAll game-buy-geekMarket-button" data-game-total="18" href="#">See All&nbsp;</a>
+                                        <a id="game-buy-geekMarket-buttons-sell" class="dotted-underlined-link game-buy-geekMarket-button" href="#">Sell a Copy</a>
+                                        <a id="game-buy-geekMarket-buttons-priceHistory" class="dotted-underlined-link game-buy-geekMarket-button" href="#">Price History</a>
                                     </div>
                                 </div>
                             </div>
@@ -616,7 +616,7 @@
                                 <div id="game-banner-sleeveCards-text">We have the sizes you need across the various brands gamers prefer.</div>
                             </div>
                             
-                            <a id="game-infoPanel-button-SleeveIt" class="game-infoPanel-button" href="#">
+                            <a id="game-banner-button-SleeveIt" class="game-infoPanel-button game-infoPanel-button-SleeveIt" href="#">
                                 <img class="game-infoPanel-button-img" src="{{ url('images/game-infoPanel-button-sleeveIt.svg') }}" alt="Sleeve It">
                                 <div class="game-infoPanel-button-text">Find Sleeve</div>
                             </a>
@@ -628,15 +628,15 @@
                         <hr class="game-container-title-hr">
                         <div id="game-videos-content">
                             <div id="game-videos-columun-review" class="game-videos-column">
-                                <div class="game-videos-title game-smallTitle">Hot Reviews</div>
+                                <div class="game-videos-title game-smallTitle">HOT REVIEWS</div>
                                 
                             </div>
                             <div id="game-videos-columun-istructions" class="game-videos-column">
-                                <div class="game-videos-title game-smallTitle">Hot "How To Play"</div>
+                                <div class="game-videos-title game-smallTitle">HOT "HOW TO PLAY"</div>
                                 
                             </div>
                             <div id="game-videos-columun-last" class="game-videos-column">
-                                <div class="game-videos-title game-smallTitle">Latest Video</div>
+                                <div class="game-videos-title game-smallTitle">LASTEST VIDEO</div>
                                 
                             </div>
                         </div>
@@ -648,7 +648,7 @@
                         <hr class="game-container-title-hr">
                         <div id="game-reviews-content">
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Hot Reviews</div>
+                                <div class="game-list-section-title game-smallTitle">HOT REVIEWS</div>
                                 <div id="game-list-section-hotReviews" class="game-list-section-content">
 
                                     
@@ -656,7 +656,7 @@
                                 </div>
                             </div>      
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Recent Reviews</div>
+                                <div class="game-list-section-title game-smallTitle">RECENT REVIEWS</div>
                                 <div id="game-list-section-recentReviews" class="game-list-section-content">
                                     
                                 </div>
@@ -682,13 +682,13 @@
                         <hr class="game-container-title-hr">
                         <div id="game-forums-content">   
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Hot Threads</div>
+                                <div class="game-list-section-title game-smallTitle">HOT THREADS</div>
                                 <div id="game-forums-hot" class="game-list-section-content">
                                     
                                 </div>
                             </div>
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Recent Threads</div>
+                                <div class="game-list-section-title game-smallTitle">RECENT THREADS</div>
                                 <div id="game-forums-recents" class="game-list-section-content">
                                     
                                 </div>
@@ -702,13 +702,13 @@
                         <hr class="game-container-title-hr">
                         <div id="game-files-content">   
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Top Files</div>
+                                <div class="game-list-section-title game-smallTitle">TOP FILES</div>
                                 <div id="game-files-topFiles" class="game-list-section-content">
                                     
                                 </div>
                             </div>
                             <div class="game-list-section">
-                                <div class="game-list-section-title game-smallTitle">Recent Files</div>
+                                <div class="game-list-section-title game-smallTitle">RECENT FILES</div>
                                 <div id="game-files-recents"class="game-list-section-content">
                                     
                                 </div>
