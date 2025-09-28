@@ -91,11 +91,9 @@ article{
 
 .search-oder-button[data-order-dir = "asc"]::after{
     content: " ▲"
-    /* " ‸↑↓▲▼" */
 }
 
 .search-oder-button[data-order-dir = "desc"]::after{
     content: " ▼"
-    /* " ‸↑↓▲▼" */
 }
 

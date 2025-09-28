@@ -260,28 +260,6 @@
                             </div>
                         </a>
                     </div>
-                    <!-- <div class="media-item media-gray-background" data-comment_id="11">
-                        <div class="media-item-wrapper">
-                            <div class="media-item-author">
-                                <a href="http://localhost/bgg/public/user/1">
-                                    <img class="media-item-author-img" src="https://www.w3schools.com/howto/img_avatar.png" alt="GameMaster">
-                                </a>
-                            </div>
-                            <div class="media-item-container">
-                                <div class="media-item-header">
-                                    <a class="media-item-header-name" href="http://localhost/bgg/public/user/1">GameMaster</a>
-                                    <div class="media-item-header-date">3 days ago</div>
-                                </div>
-                                <img id="media-item-img" src="https://i.ytimg.com/vi/p_BdLWh55-I/hqdefault.jpg">
-                                <div class="media-item-text">Tutorial: How to play Sky Team</div>
-                                <div id="media-item-likeButton-wrapper">
-                                    <i id="media-item-like-button" class="fa-regular fa-thumbs-up media-item-like-button-active"></i>
-                                    <div id="media-item-likeButton-number" class="media-item-likeButton-number" data-value="11">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                 </div>
                 <div class="media-comments-form-container media-item">

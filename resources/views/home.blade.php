@@ -260,7 +260,7 @@
                             
                         </div>
 
-                        <hr id="home-explore-sperator-hr">
+                        <hr id="home-explore-sperator-hr" class="home-section-hr">
 
                         <div id="home-explore-articles-container">
 

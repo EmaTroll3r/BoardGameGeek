@@ -39,7 +39,7 @@ function toggleLikeButton(response){
 }
 
 
-function createMediaItem(item, isHeader) {
+function createMediaItem(item, isMainComment) {
 
     console.log(item)
     
@@ -48,10 +48,14 @@ function createMediaItem(item, isHeader) {
     const mediaItem = document.createElement('div');
     mediaItem.classList.add('media-item');
     mediaItem.dataset.comment_id = item.id;
-    if(isHeader)
-        mediaItem.classList.add('media-gray-background');
-    else if(item.uploader.id == user_id)
+    
+    if(item.uploader.id == user_id)
         mediaItem.classList.add('media-green-background');
+
+    if(isMainComment){
+        mediaItem.classList.add('media-gray-background');
+        mediaItem.id = "media-mainComment";
+    } 
 
     const itemWrap = document.createElement('div');
     itemWrap.classList.add('media-item-wrapper');
@@ -82,7 +86,7 @@ function createMediaItem(item, isHeader) {
     dateDiv.classList.add('media-item-header-date');
     dateDiv.textContent = formatPublishDate(item.created_at);
 
-    if(isHeader && item.media_type=="file"){
+    if(isMainComment && item.media_type=="file"){
         var fileWrap = document.createElement('div');
         fileWrap.id = 'media-item-file-wrapper';
         fileWrap.classList.add('media-item');
@@ -98,21 +102,25 @@ function createMediaItem(item, isHeader) {
         fileWrap.appendChild(itemIcon);
         fileWrap.appendChild(fileType);
 
-    }else if(isHeader && item.uri){
+    }else if(isMainComment && item.uri){
         var itemImg = document.createElement('img');
         itemImg.id = "media-item-img";
         itemImg.src = item.uri;
         itemImg.alt = item.title;
+        
+        
     }
+    const itemContentWrap = document.createElement('div');
+    itemContentWrap.classList.add('media-item-content-wrapper');
     
     const textDiv = document.createElement('div');
     textDiv.classList.add('media-item-text');
-    if(isHeader)
+    if(isMainComment)
         textDiv.textContent = item.description;
     else
         textDiv.textContent = item.text_comment;
 
-    if(isHeader){
+    if(isMainComment){
         var likeWrap = document.createElement('div');
         likeWrap.id = 'media-item-likeButton-wrapper';
 
@@ -150,18 +158,22 @@ function createMediaItem(item, isHeader) {
 
     container.appendChild(header);
 
-    if(isHeader && item.media_type=="file")
+    if(isMainComment && item.media_type=="file")
         container.appendChild(fileWrap);
-    else if(isHeader && item.uri)
-        container.appendChild(itemImg);    
+    else if(isMainComment && item.uri)
+        itemContentWrap.appendChild(itemImg);    
+        // mediaItem.appendChild(itemImg);    
     container.appendChild(textDiv);
 
-    if(isHeader)
+    if(isMainComment)
         container.appendChild(likeWrap);
     
     itemWrap.appendChild(container);
 
-    mediaItem.appendChild(itemWrap);
+    // mediaItem.appendChild(itemWrap);
+    itemContentWrap.appendChild(itemWrap);
+
+    mediaItem.appendChild(itemContentWrap);
 
     if(item.uploader.id == user_id)
         mediaItem.appendChild(deleteButton);
@@ -174,8 +186,6 @@ function createMediaItem(item, isHeader) {
 function buildPage(data){
 
     // console.log(data);
-
-    
     document.title = data.media.title + " | BoardGameGeek";
 
     headerLink.href = BASE_URL + 'game/' + data.boardgame.id;
