@@ -274,19 +274,19 @@ function createHomeSplitItem(item, page_name) {
 const mainNewsContainer = document.querySelector('#home-explore-main-container');
 const exploreContainer = document.querySelector('#home-explore-articles-container');
 
-const hotnessContent = document.querySelector('#hot-section > .home-section-content');
-const crowdfundingContent = document.querySelector('#crowdfunding-section > .home-section-content');
-const videoContent = document.querySelector('#videos-section > .home-section-content');
-const bestsellerContent = document.querySelector('#bestseller-section > .home-section-content');
-const givewayContent = document.querySelector('#giveway-section > .home-section-content');
-const mostPlayedContent = document.querySelector('#mostPlayed-section > .home-section-content');
-const geeklistContent = document.querySelector('#geeklist-section > .home-section-content');
-const hotVideosContent = document.querySelector('#hotVideos-section > .home-section-content');
-const booksContent = document.querySelector('#hotBooks-section > .home-section-content');
-const bgNewsContent = document.querySelector('#home-news-split > .home-split-content');
-const discussionContent = document.querySelector('#home-discussion-split > .home-split-content');
-const blogsContent = document.querySelector('#home-blogs-split > .home-split-content');
-const forumsContent = document.querySelector('#home-forums-split > .home-split-content');
+const hotnessContent = document.querySelector('#hot-section .home-section-content');
+const crowdfundingContent = document.querySelector('#crowdfunding-section .home-section-content');
+const videoContent = document.querySelector('#videos-section .home-section-content');
+const bestsellerContent = document.querySelector('#bestseller-section .home-section-content');
+const givewayContent = document.querySelector('#giveway-section .home-section-content');
+const mostPlayedContent = document.querySelector('#mostPlayed-section .home-section-content');
+const geeklistContent = document.querySelector('#geeklist-section .home-section-content');
+const hotVideosContent = document.querySelector('#hotVideos-section .home-section-content');
+const booksContent = document.querySelector('#hotBooks-section .home-section-content');
+const bgNewsContent = document.querySelector('#home-news-split .home-split-content');
+const discussionContent = document.querySelector('#home-discussion-split .home-split-content');
+const blogsContent = document.querySelector('#home-blogs-split .home-split-content');
+const forumsContent = document.querySelector('#home-forums-split .home-split-content');
 
 
 fetch(BASE_URL + 'home/listBoardgames')

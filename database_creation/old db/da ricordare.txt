@@ -235,3 +235,8 @@ text-decoration-color: var(--gray-link);
 text-underline-offset: 4px;
     controlla la distanza verticale della linea di sottolineatura rispetto al testo 
     (ossia quanto la linea è “spostata” rispetto alla posizione predefinita).
+
+Defer 
+    Viene aggiunto al tag script per far 
+    sì che il codice JavaScript venga eseguito solo dopo che il 
+    DOM sia stato caricato

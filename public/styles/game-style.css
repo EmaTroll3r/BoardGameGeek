@@ -994,7 +994,7 @@
     justify-content: space-between;
 }
 
-#game-expansionsAndlinks-container > .game-container{
+#game-expansionsAndlinks-container .game-container{
     flex-basis: 48.5%;
 }
 
