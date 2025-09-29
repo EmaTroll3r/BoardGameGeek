@@ -2,12 +2,6 @@ const max_slit_items = 5;
 const maxApiResults = 5;
 
 
-// <img src="https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__opengraph/img/10P2KjknnofwYAqlJkBUXpz0I40=/0x0:4259x2236/fit-in/1200x630/filters:strip_icc()/pic3163924.jpg" alt="Scythe">
-// <div id="home-explore-main-text" class="item">
-//     <div id="home-explore-main-title" class="item-title">Scythe: One of the best worker placement games ever</div>
-//     <div id="home-explore-main-author" class="item-author">by&nbsp;<a class="home-author" href="#">EmaTroll3r</a></div>
-// </div>
-
 function createMainNews(item){
     const wrapper = document.createElement('div');
 
@@ -138,7 +132,7 @@ function createHomeSectionItem(item, n, page_name) {
     }else if(item.info){
         info = document.createElement('div');
         info.classList.add('home-section-item-info');
-        info.textContent = item.info;
+        info.textContent = formatPublishDate(String(item.info));
     }
 
     let link;

@@ -154,22 +154,21 @@ class HomeController extends BaseController
                 $videos = [];
                 for($i=0; $i<count($data['items']); $i++) {
                     $item = $data['items'][$i];
-                    $videos[] = [
-                        'id' => $item['id']['videoId'],
-                        'name' => $item['snippet']['title'],
-                        'description' => substr($item['snippet']['description'], 0, 50) . '...',
-                        'thumbnail_url' => $item['snippet']['thumbnails']['medium']['url'],
-                        'alt' => $item['snippet']['title'],
-                        'info' => date('Y-m-d', strtotime($item['snippet']['publishedAt'])),
-                        // 'info' => $item['snippet']['publishedAt'],
-                        'href' => 'https://www.youtube.com/watch?v=' . $item['id']['videoId']
-                    ];
+                    $video['id'] = $item['id']['videoId'];
+                    $video['name'] = $item['snippet']['title'];
+                    $video['description'] = substr($item['snippet']['description'], 0, 50) . '...';
+                    $video['thumbnail_url'] = $item['snippet']['thumbnails']['medium']['url'];
+                    $video['alt'] = $item['snippet']['title'];
+                    $video['info'] = $item['snippet']['publishedAt'];
+                    $video['href'] = 'https://www.youtube.com/watch?v=' . $item['id']['videoId'];
+                    $videos[$i] = $video;
                 }
                 return $videos;
             }
         }
         
-        return ['error' => 'Failed to fetch videos '. $httpCode];
+        $error['error'] = 'Failed to fetch videos '. $httpCode;
+        return $error;
     }
 
     public function get_openlibrary_books($title, $maxResults) {
@@ -191,18 +190,19 @@ class HomeController extends BaseController
             $data = json_decode($response, true);
             if (!empty($data['docs'])) {
                 $books = [];
-                foreach ($data['docs'] as $item) {
-                    $books[] = [
-                        'name' => $item['title'] ?? '',
-                        'info' => $item['first_publish_year'] ?? '',
-                        'thumbnail_url' => isset($item['cover_i']) ? "https://covers.openlibrary.org/b/id/{$item['cover_i']}-M.jpg" : 'https://peoplesblog.co.in/sri-vedanta-swarajya-sangam/assets/img/books/default.jpeg',
-                    ];
+                for($i=0; $i<count($data['docs']); $i++) {
+                    $item = $data['docs'][$i];
+                    $book['name'] = $item['title'];
+                    $book['info'] = $item['first_publish_year'];
+                    $book['thumbnail_url'] = isset($item['cover_i']) ? "https://covers.openlibrary.org/b/id/{$item['cover_i']}-M.jpg" : 'https://peoplesblog.co.in/sri-vedanta-swarajya-sangam/assets/img/books/default.jpeg';
+                    $books[$i] = $book;
                 }
                 return $books;
             }
         }
 
-        return ['error' => 'Failed to fetch books ' . $httpCode];
+        $error['error'] = 'Failed to fetch videos '. $httpCode;
+        return $error;
     }
 
     public function hometest($id){
