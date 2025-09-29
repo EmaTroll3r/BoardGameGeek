@@ -194,3 +194,44 @@ media.blade.php:onCancelButtonClick()
 
 home-style.css: .item:hover img
     filter: brightness(0.85);    //riduce la luminosità dell'elemento al 85% (quindi lo scurisce del 15%)
+
+
+home-style.css: .home-section-content
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    overflow-x: auto        — permette lo scorrimento orizzontale solo se il contenuto supera 
+                              la larghezza del contenitore; altrimenti non mostra barre di scorrimento.
+    scrollbar-width: none   — proprietà supportata da Firefox che nasconde la scrollbar 
+                              (valori possibili: auto, thin, none).
+
+
+object-fit: cover;
+    object-fit: cover fa sì che l'immagine (o altro "replaced element" come <video>) riempia 
+    completamente il box assegnato preservando il rapporto d'aspetto; se le proporzioni dell'immagine 
+    non combaciano con quelle del contenitore, l'immagine viene ritagliata (crop) sui lati necessari 
+    per riempire senza distorsione
+
+
+flex-wrap: wrap 
+    permette agli elementi flex di andare su più righe/colonne se non ci stanno tutti su una sola. 
+    Per esempio, con flex-direction: row gli elementi passeranno alla riga successiva; 
+    con flex-direction: column creeranno nuove colonne.
+
+    Valori possibili:
+        - nowrap (default) — nessun wrapping, tutto su una riga/colonna (può overflow).
+        - wrap — permette il wrap normale (nuove righe sotto).
+        - wrap-reverse — come wrap ma le righe aggiuntive vengono poste sopra (o a sinistra per column).
+
+
+::after 
+    è una pseudo‑elemento CSS che crea un elemento virtuale come ultimo figlio dell'elemento selezionato. 
+    Serve per inserire contenuto o elementi decorativi senza modificare l’HTML.
+
+
+text-decoration-color: var(--gray-link);
+    imposta il colore della decorazione del testo (sottolineatura, linea sopra, linea attraverso).
+
+text-underline-offset: 4px;
+    controlla la distanza verticale della linea di sottolineatura rispetto al testo 
+    (ossia quanto la linea è “spostata” rispetto alla posizione predefinita).
