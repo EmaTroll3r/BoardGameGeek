@@ -11,8 +11,8 @@ function showSubmenu(event) {
 }
 
 function hideAllSubMenu() {
-    for (let item of navItems) {
-        item.classList.remove('nav-show-Submenu');
+    for(let i=0; i < navItems.length; i++){
+        navItems[i].classList.remove('nav-show-Submenu');
     }
 }
 
@@ -20,13 +20,15 @@ function toggleQuickbar() {
     quickbar.classList.toggle('quickbar-hide');
 }
 
-function onText(text) {
-    usernameContent.dataset.username = text || "Sign In";
+function setNavUsername(json) {
+    if(json.status === "OK")
+        usernameContent.dataset.username = json.username || "Sign In";
+    else
+        alert(json.status);
 }
 
 function searchBoardgame(){
     const q = searchInput.value.trim();
-    
     if(!q) 
         return;
     
@@ -35,18 +37,17 @@ function searchBoardgame(){
 
 
 
-for(let item of navItems) {
-    item.addEventListener('click', showSubmenu);
+for(let i=0; i < navItems.length; i++){
+    navItems[i].addEventListener('click', showSubmenu);
 }
 
 
 fetch(BASE_URL + 'getSessionUsername')
-.then(onResponseReturnText)
-.then(onText)
+.then(onResponseReturnJson)
+.then(setNavUsername);
 
 
-
-document.addEventListener('click', hideAllSubMenu,{ capture: true});
+document.addEventListener('click', hideAllSubMenu, {capture: true});
 navMenu.addEventListener('click', toggleQuickbar);
 searchButton.addEventListener('click',searchBoardgame)
     

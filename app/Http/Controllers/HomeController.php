@@ -23,10 +23,19 @@ class HomeController extends BaseController
 
     public function get_session_username(){
         $user = User::find(Session::get('user_id'));
-        if($user)
-            return $user->username;
-        else
-            return null;
+        if($user){
+            $data['username'] = $user->username;
+            $data['status'] = "OK";
+            return $data;
+        }else{
+            $data['username'] = null;
+            $data['status'] = "OK";
+            return $data;
+        }
+        
+        $data['username'] = null;
+        $data['status'] = "Error: generic error";
+        return $data;
     }    
     
     public function get_hot_games($maxResults = 8){
