@@ -18,6 +18,8 @@ game-script.js:rate_boardgame serve che attenda la risposta o va bene anche solo
 
 
 
+
+
 -------------- DA MODIFICRE PRIMA DELL'ESAME---------------------------------
 
 in database_tables.sql, TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP -----> TIMESTAMP NOT NULL DEFAULT 0
