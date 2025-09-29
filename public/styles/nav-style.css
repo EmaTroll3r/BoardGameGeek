@@ -172,7 +172,7 @@ nav{
 }
 
 
-@media (max-width: 680px) {
+@media (max-width: 580px) {
 
     #nav-search-container .fa-search{
         margin-right: 20px; 
